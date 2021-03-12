@@ -7,6 +7,8 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.ossovita.kotlincountrylist.R
 import com.ossovita.kotlincountrylist.model.Country
+import com.ossovita.kotlincountrylist.util.downloadFromUrl
+import com.ossovita.kotlincountrylist.util.placeHolderProgressBar
 import com.ossovita.kotlincountrylist.view.FeedFragmentDirections
 import kotlinx.android.synthetic.main.item_country.view.*
 
@@ -35,6 +37,7 @@ class CountryAdapter(val countryList: ArrayList<Country>): RecyclerView.Adapter<
           val action = FeedFragmentDirections.actionFeedFragmentToCountryFragment(3)
           Navigation.findNavController(it).navigate(action)
       }
+      holder.view.imageView.downloadFromUrl(countryList[position].imageUrl, placeHolderProgressBar(holder.view.context))
 
 
 

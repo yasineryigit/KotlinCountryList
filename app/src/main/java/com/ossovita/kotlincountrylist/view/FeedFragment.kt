@@ -44,6 +44,8 @@ class FeedFragment : Fragment() {
         countryList.layoutManager = LinearLayoutManager(context)
         countryList.adapter = countryAdapter
 
+        val myString = "James"
+
         swipeRefreshLayout.setOnRefreshListener {
             countryList.visibility=View.INVISIBLE
             countryError.visibility=View.GONE
@@ -52,6 +54,8 @@ class FeedFragment : Fragment() {
             swipeRefreshLayout.isRefreshing=false
 
         }
+
+
 
         /*
         fragment_button.setOnClickListener {
