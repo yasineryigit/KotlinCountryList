@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ossovita.kotlincountrylist.R
 import com.ossovita.kotlincountrylist.adapter.CountryAdapter
@@ -44,6 +45,7 @@ class FeedFragment : Fragment() {
         countryList.adapter = countryAdapter
 
 
+
         /*
         fragment_button.setOnClickListener {
             val action = FeedFragmentDirections.actionFeedFragmentToCountryFragment();
@@ -55,7 +57,7 @@ class FeedFragment : Fragment() {
     }
 
     //veri çekmek için bir metod
-    fun observeLiveData(){
+    private fun observeLiveData(){
         //viewModel'dan gelen countries listesini dinliyoruz
         viewModel.countries.observe(viewLifecycleOwner, Observer {countries->
             //countries boş değilse visible yap
