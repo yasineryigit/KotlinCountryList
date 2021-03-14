@@ -11,8 +11,8 @@ data class Country (
     @SerializedName("name")
     val countryName: String?,
 
-    @ColumnInfo(name="region")
-    @SerializedName("region")
+    @ColumnInfo(name="region")//for Database
+    @SerializedName("region")//for API
     val countryRegion: String?,
 
     @ColumnInfo(name="capital")

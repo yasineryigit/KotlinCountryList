@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="selectedCountry"
+            type="com.ossovita.kotlincountrylist.model.Country" />
+    </data>
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,6 +13,7 @@
 
     <ImageView
         android:id="@+id/countryImage"
+        android:downloadUrl="@{selectedCountry.imageUrl}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -16,6 +22,7 @@
         android:minHeight="200dp"/>
       <TextView
           android:id="@+id/countryName"
+          android:text="@{selectedCountry.countryName}"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_below="@+id/countryImage"
@@ -23,43 +30,44 @@
           android:textStyle="bold"
           android:paddingTop="10dp"
           android:layout_centerHorizontal="true"
-          android:text="Country Name"/>
+          />
          <TextView
             android:id="@+id/countryCapital"
+            android:text="@{selectedCountry.countryCapital}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/countryName"
             android:textSize="16sp"
              android:paddingTop="10dp"
-            android:layout_centerHorizontal="true"
-            android:text="Country Capital"/>
+            android:layout_centerHorizontal="true" />
     <TextView
         android:id="@+id/countryRegion"
+        android:text="@{selectedCountry.countryRegion}"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/countryCapital"
         android:textSize="16sp"
         android:paddingTop="10dp"
-        android:layout_centerHorizontal="true"
-        android:text="Country Region"/>
+        android:layout_centerHorizontal="true" />
     <TextView
         android:id="@+id/countryCurrency"
+        android:text="@{selectedCountry.countryCurrency}"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/countryRegion"
         android:textSize="16sp"
         android:paddingTop="10dp"
-        android:layout_centerHorizontal="true"
-        android:text="Country Currency"/>
+        android:layout_centerHorizontal="true" />
     <TextView
         android:id="@+id/countryLanguage"
+        android:text="@{selectedCountry.countryLanguage}"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/countryCurrency"
         android:textSize="16sp"
         android:paddingTop="10dp"
         android:layout_centerHorizontal="true"
-        android:text="Country Language"/>
+        />
 
 
 </RelativeLayout>

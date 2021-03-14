@@ -5,10 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 
 import com.ossovita.kotlincountrylist.R
+import com.ossovita.kotlincountrylist.databinding.FragmentCountryBinding
 import com.ossovita.kotlincountrylist.util.downloadFromUrl
 import com.ossovita.kotlincountrylist.util.placeHolderProgressBar
 import com.ossovita.kotlincountrylist.viewmodel.CountryViewModel
@@ -18,14 +20,16 @@ import kotlinx.android.synthetic.main.item_country.view.*
 
 class CountryFragment : Fragment() {
     private lateinit var viewModel:CountryViewModel
-
     private var countryUuid=0;
+    private lateinit var dataBinding:FragmentCountryBinding;
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        dataBinding=DataBindingUtil.inflate(inflater,R.layout.fragment_country,container,false)
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_country, container, false)
+        return dataBinding.root//dataBinding'in view'ını almak için .root yazabiliriz
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,11 +48,13 @@ class CountryFragment : Fragment() {
         private fun observeLiveData(){
             viewModel.countryLiveData.observe(viewLifecycleOwner, Observer {country->
                 country?.let {
+                    dataBinding.selectedCountry=country
+                    /*
                   countryName.text=country.countryName
                   countryCapital.text=country.countryCapital
                   countryRegion.text=country.countryRegion
                   countryCurrency.text=country.countryCurrency
-                  countryLanguage.text=country.countryLanguage
+                  countryLanguage.text=country.countryLanguage*/
                   context?.let {
                       countryImage.downloadFromUrl(country.imageUrl, placeHolderProgressBar(it))
                   }
