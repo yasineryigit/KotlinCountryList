@@ -31,7 +31,7 @@ data class Country (
     @SerializedName("flag")
     val imageUrl: String?
 )
-
-
+{
     @PrimaryKey(autoGenerate = true) //otomatik olarak primary key atansın mı: true
     var uuid: Int =0
+}
