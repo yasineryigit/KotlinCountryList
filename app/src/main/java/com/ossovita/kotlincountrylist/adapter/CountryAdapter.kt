@@ -34,7 +34,7 @@ class CountryAdapter(val countryList: ArrayList<Country>): RecyclerView.Adapter<
 
       holder.view.setOnClickListener{
           //Seçilen objenin uuidsi olunca parametre olarak onu göndereceğiz
-          val action = FeedFragmentDirections.actionFeedFragmentToCountryFragment(3)
+          val action = FeedFragmentDirections.actionFeedFragmentToCountryFragment(countryList[position].uuid)
           Navigation.findNavController(it).navigate(action)
       }
       holder.view.imageView.downloadFromUrl(countryList[position].imageUrl, placeHolderProgressBar(holder.view.context))

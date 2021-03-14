@@ -9,6 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 
 import com.ossovita.kotlincountrylist.R
+import com.ossovita.kotlincountrylist.util.downloadFromUrl
+import com.ossovita.kotlincountrylist.util.placeHolderProgressBar
 import com.ossovita.kotlincountrylist.viewmodel.CountryViewModel
 import kotlinx.android.synthetic.main.fragment_country.*
 import kotlinx.android.synthetic.main.item_country.view.*
@@ -28,14 +30,15 @@ class CountryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(CountryViewModel::class.java)
-        viewModel.getDataFromRoom()
-        observeLiveData()
-
         //getArguments() null değilse
         arguments?.let {
             countryUuid = CountryFragmentArgs.fromBundle(it).countryUuid
         }
+        viewModel = ViewModelProviders.of(this).get(CountryViewModel::class.java)
+        viewModel.getDataFromRoom(countryUuid)
+        observeLiveData()
+
+
         }
 
         private fun observeLiveData(){
@@ -46,6 +49,10 @@ class CountryFragment : Fragment() {
                   countryRegion.text=country.countryRegion
                   countryCurrency.text=country.countryCurrency
                   countryLanguage.text=country.countryLanguage
+                  context?.let {
+                      countryImage.downloadFromUrl(country.imageUrl, placeHolderProgressBar(it))
+                  }
+
 
 
                 }
